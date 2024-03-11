@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+
+import "google/api/annotations.proto";
+
+package api.shortUrlX.v1;
+option go_package = "github.com/bitstormhub/bitstorm/shortUrlX/api/shortUrlX/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.userX.v1";
+
+
+service UserX {
+	rpc CreateUser (CreateUserRequest) returns (CreateUserReply){
+		option (google.api.http) = {
+			post: "/create_user",
+			body: "*"
+		};
+	}
+	rpc UpdateUser (UpdateUserRequest) returns (UpdateUserReply);
+	rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply);
+	rpc GetUser (GetUserRequest) returns (GetUserReply) {
+		option (google.api.http) = {
+			get: "/get_user_info"
+		};
+	}
+	rpc GetUserByName (GetUserByNameRequest) returns (GetUserByNameReply) {
+		option (google.api.http) = {
+			get: "/get_user_info_byname"
+		};
+	}
+	rpc ListUser (ListUserRequest) returns (ListUserReply);
+}
+
+message CreateUserRequest {
+	string user_name = 1;
+	string pwd = 2;
+	int32 sex = 3;
+	int32  age = 4;
+	string email = 5;
+	string contact            = 6;
+	string mobile             = 7;
+	string id_card             = 8;
+}
+
+message CreateUserReply {
+	int32 code = 1;
+	string message = 2;
+	CreateUserData data = 3;
+}
+
+message CreateUserData
+{
+	int64 user_id= 1;
+	string token = 2;
+}
+
+message UpdateUserRequest {}
+message UpdateUserReply {}
+
+message DeleteUserRequest {}
+message DeleteUserReply {}
+
+message GetUserRequest {
+	int64 user_id = 1;
+}
+
+message GetUserReply {
+	int32 code = 1;
+	string message = 2;
+	GetUserReplyData data = 3;
+}
+
+message GetUserReplyData {
+	int64 id = 1;
+	string user_name = 2;
+	string pwd = 3;
+	int32 sex = 4;
+	int32 age = 5;
+	string email = 6;
+	string contact            = 7;
+	string mobile             = 8;
+	string id_card             = 9;
+}
+
+message GetUserByNameRequest {
+	string user_name = 1;
+}
+
+message GetUserByNameReply {
+	int32 code = 1;
+	string message = 2;
+	GetUserReplyData data = 3;
+}
+
+message ListUserRequest {}
+message ListUserReply {}

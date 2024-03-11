@@ -1,0 +1,145 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: UserX API
+    version: 0.0.1
+paths:
+    /create_user:
+        post:
+            tags:
+                - UserX
+            operationId: UserX_CreateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.shortUrlX.v1.CreateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.CreateUserReply'
+    /get_user_info:
+        get:
+            tags:
+                - UserX
+            operationId: UserX_GetUser
+            parameters:
+                - name: userId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.GetUserReply'
+    /get_user_info_byname:
+        get:
+            tags:
+                - UserX
+            operationId: UserX_GetUserByName
+            parameters:
+                - name: userName
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.shortUrlX.v1.GetUserByNameReply'
+components:
+    schemas:
+        api.shortUrlX.v1.CreateUserData:
+            type: object
+            properties:
+                userId:
+                    type: string
+                token:
+                    type: string
+        api.shortUrlX.v1.CreateUserReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.shortUrlX.v1.CreateUserData'
+        api.shortUrlX.v1.CreateUserRequest:
+            type: object
+            properties:
+                userName:
+                    type: string
+                pwd:
+                    type: string
+                sex:
+                    type: integer
+                    format: int32
+                age:
+                    type: integer
+                    format: int32
+                email:
+                    type: string
+                contact:
+                    type: string
+                mobile:
+                    type: string
+                idCard:
+                    type: string
+        api.shortUrlX.v1.GetUserByNameReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.shortUrlX.v1.GetUserReplyData'
+        api.shortUrlX.v1.GetUserReply:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/api.shortUrlX.v1.GetUserReplyData'
+        api.shortUrlX.v1.GetUserReplyData:
+            type: object
+            properties:
+                id:
+                    type: string
+                userName:
+                    type: string
+                pwd:
+                    type: string
+                sex:
+                    type: integer
+                    format: int32
+                age:
+                    type: integer
+                    format: int32
+                email:
+                    type: string
+                contact:
+                    type: string
+                mobile:
+                    type: string
+                idCard:
+                    type: string
+tags:
+    - name: UserX
